@@ -1,8 +1,11 @@
 {
-  "name": "n8n-mcp-tool",
+  "name": "@kr8thor/n8n-mcp-server",
   "version": "1.0.0",
-  "description": "MCP tool for managing n8n workflows in Docker containers",
+  "description": "MCP server for managing n8n workflows in Docker containers",
   "main": "index.js",
+  "bin": {
+    "n8n-mcp-server": "./index.js"
+  },
   "scripts": {
     "start": "node index.js"
   },
@@ -13,10 +16,16 @@
     "docker",
     "automation"
   ],
-  "author": "Claude Assistant",
+  "author": "Kr8thor",
   "license": "MIT",
-  "dependencies": {},
-  "bin": {
-    "n8n-mcp": "./index.js"
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.6.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kr8thor/n8n-mcp-tool.git"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }

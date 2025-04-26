@@ -1,12 +1,6 @@
-# n8n MCP Tool
+# n8n MCP Server
 
-This repository contains an MCP (Model Context Protocol) tool for managing n8n workflows through Claude desktop.
-
-## Installation
-
-1. Clone this repository
-2. Add to your Claude desktop configuration
-3. Restart Claude desktop
+A proper MCP (Model Context Protocol) server implementation for managing n8n workflows in Docker containers.
 
 ## Features
 
@@ -16,49 +10,101 @@ This repository contains an MCP (Model Context Protocol) tool for managing n8n w
 - Troubleshoot workflow issues
 - Backup and restore workflows
 
-## Usage
+## Prerequisites
 
-The tool provides several commands:
+- Node.js 16+
+- Docker installed and running
+- n8n running in a Docker container
 
-### List Workflows
-```
-list-workflows
-```
+## Installation
 
-### Update Workflow
-```
-update-workflow --id <workflow-id> --file <update-file>
-```
-
-### Restart Container
-```
-restart-container --name <container-name>
+1. Clone this repository:
+```bash
+git clone https://github.com/Kr8thor/n8n-mcp-tool.git
+cd n8n-mcp-tool
 ```
 
-### Backup Workflows
-```
-backup-workflows --output <backup-file>
+2. Install dependencies:
+```bash
+npm install
 ```
 
-### Troubleshoot
-```
-troubleshoot --workflow <workflow-id>
+3. Make the script executable:
+```bash
+chmod +x index.js
 ```
 
 ## Configuration
 
-Add to your `claude_desktop_config.json`:
+Add to your Claude Desktop `claude_desktop_config.json`:
 
 ```json
 {
   "mcpServers": {
-    "n8n-manager": {
+    "n8n-workflow-manager": {
       "command": "node",
-      "args": ["path/to/n8n-mcp-tool/index.js"]
+      "args": ["/path/to/n8n-mcp-tool/index.js"],
+      "env": {
+        "N8N_CONTAINER_NAME": "your-n8n-container-name"
+      }
     }
   }
 }
 ```
+
+Or use npx directly from GitHub:
+
+```json
+{
+  "mcpServers": {
+    "n8n-workflow-manager": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "github:Kr8thor/n8n-mcp-tool"
+      ],
+      "env": {
+        "N8N_CONTAINER_NAME": "your-n8n-container-name"
+      }
+    }
+  }
+}
+```
+
+## Available Tools
+
+### list_workflows
+Lists all workflows in your n8n instance.
+
+### update_workflow
+Updates a workflow with new configuration.
+- Parameters:
+  - `workflowId`: The ID of the workflow to update
+  - `updateData`: JSON object with the workflow configuration
+
+### restart_container
+Restarts the n8n Docker container.
+
+### backup_workflows
+Creates a backup of all workflows.
+
+### troubleshoot
+Troubleshoots a workflow by checking its status and logs.
+- Parameters:
+  - `workflowId`: The ID of the workflow to troubleshoot
+
+## Environment Variables
+
+- `N8N_CONTAINER_NAME`: The name of your n8n Docker container (default: 'n8n-container')
+
+## Troubleshooting
+
+If you encounter issues:
+
+1. Ensure Docker is running
+2. Verify your container name is correct
+3. Check that you have proper permissions to execute Docker commands
+4. Look at the MCP server logs for detailed error messages
 
 ## Contributing
 
