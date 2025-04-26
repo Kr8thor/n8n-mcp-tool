@@ -1,0 +1,22 @@
+{
+  "name": "n8n-mcp-tool",
+  "version": "1.0.0",
+  "description": "MCP tool for managing n8n workflows in Docker containers",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "n8n",
+    "mcp",
+    "workflow",
+    "docker",
+    "automation"
+  ],
+  "author": "Claude Assistant",
+  "license": "MIT",
+  "dependencies": {},
+  "bin": {
+    "n8n-mcp": "./index.js"
+  }
+}
