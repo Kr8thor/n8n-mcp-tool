@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "n8n-workflow-manager": {
+      "command": "node",
+      "args": ["C:/path/to/n8n-mcp-tool/index.js"],
+      "env": {
+        "N8N_CONTAINER_NAME": "n8n-recovered"
+      }
+    }
+  }
+}
